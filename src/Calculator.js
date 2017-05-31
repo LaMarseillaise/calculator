@@ -23,6 +23,7 @@ class Calculator extends Component {
 
     this.state = {
       entry: 0,
+      place: 0,
       newEntry: true,
       operand: undefined,
       operation: undefined
@@ -55,15 +56,26 @@ class Calculator extends Component {
   }
 
   updateNumber(digitString) {
+    let entry = this.state.entry
+    let digit = parseFloat(digitString)
+    let place = this.state.place
+
+    if(this.state.newEntry) { entry = 0 }
+    if(place >= 0) { entry *= 10 }
+    entry += digit * Math.pow(10.0, place)
+    if(place < 0) { place -= 1 }
+    this.setState({ place, entry, newEntry: false })
   }
 
   beginFloat() {
+    this.setState({ place: this.state.place || -1 })
   }
 
   setOperation(operationName) {
     this.setState({
       operand: this.state.entry,
       operation: this.operations(operationName),
+      place: 0,
       newEntry: true
     })
   }
@@ -78,6 +90,7 @@ class Calculator extends Component {
   clearInput() {
     this.setState({
       entry: 0,
+      place: 0,
       newEntry: true,
       operand: undefined,
       operation: undefined
