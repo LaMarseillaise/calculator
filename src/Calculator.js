@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Display from './Display'
+import Button from './Button'
 
 const styles = {
   calculator: {
@@ -29,6 +30,26 @@ class Calculator extends Component {
     return (
       <div style={ { ...styles.calculator } }>
         <Display width='4' displayText={this.state.entry} />
+
+        <Button value='7' color='white' />
+        <Button value='8' color='white' />
+        <Button value='9' color='white' />
+        <Button value='+' color='blue'  />
+
+        <Button value='4' color='white' />
+        <Button value='5' color='white' />
+        <Button value='6' color='white' />
+        <Button value='-' color='blue'  />
+
+        <Button value='1' color='white' />
+        <Button value='2' color='white' />
+        <Button value='3' color='white' />
+        <Button value='*' color='blue'  />
+
+        <Button value='.' color='white'  />
+        <Button value='0' color='white'  />
+        <Button value='=' color='orange' />
+        <Button value='/' color='blue'   />
       </div>
     )
   }
