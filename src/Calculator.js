@@ -24,6 +24,23 @@ class Calculator extends Component {
     this.state = {
       entry: 0,
     }
+
+    this.updateNumber   = this.updateNumber.bind(this)
+    this.beginFloat     = this.beginFloat.bind(this)
+    this.setOperation   = this.setOperation.bind(this)
+    this.evaluateEquals = this.evaluateEquals.bind(this)
+  }
+
+  updateNumber(digitString) {
+  }
+
+  beginFloat() {
+  }
+
+  setOperation(operationName) {
+  }
+
+  evaluateEquals() {
   }
 
   render() {
@@ -31,25 +48,25 @@ class Calculator extends Component {
       <div style={ { ...styles.calculator } }>
         <Display width='4' displayText={this.state.entry} />
 
-        <Button value='7' color='white' />
-        <Button value='8' color='white' />
-        <Button value='9' color='white' />
-        <Button value='+' color='blue'  />
+        <Button value='7' color='white' handlePress={this.updateNumber} />
+        <Button value='8' color='white' handlePress={this.updateNumber} />
+        <Button value='9' color='white' handlePress={this.updateNumber} />
+        <Button value='+' color='blue'  handlePress={this.setOperation} />
 
-        <Button value='4' color='white' />
-        <Button value='5' color='white' />
-        <Button value='6' color='white' />
-        <Button value='-' color='blue'  />
+        <Button value='4' color='white' handlePress={this.updateNumber} />
+        <Button value='5' color='white' handlePress={this.updateNumber} />
+        <Button value='6' color='white' handlePress={this.updateNumber} />
+        <Button value='-' color='blue'  handlePress={this.setOperation} />
 
-        <Button value='1' color='white' />
-        <Button value='2' color='white' />
-        <Button value='3' color='white' />
-        <Button value='*' color='blue'  />
+        <Button value='1' color='white' handlePress={this.updateNumber} />
+        <Button value='2' color='white' handlePress={this.updateNumber} />
+        <Button value='3' color='white' handlePress={this.updateNumber} />
+        <Button value='*' color='blue'  handlePress={this.setOperation} />
 
-        <Button value='.' color='white'  />
-        <Button value='0' color='white'  />
-        <Button value='=' color='orange' />
-        <Button value='/' color='blue'   />
+        <Button value='.' color='white'  handlePress={this.beginFloat} />
+        <Button value='0' color='white'  handlePress={this.updateNumber} />
+        <Button value='=' color='orange' handlePress={this.evaluateEquals} />
+        <Button value='/' color='blue'   handlePress={this.setOperation} />
       </div>
     )
   }
