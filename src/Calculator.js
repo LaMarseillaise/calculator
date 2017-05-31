@@ -23,12 +23,35 @@ class Calculator extends Component {
 
     this.state = {
       entry: 0,
+      newEntry: true,
+      operand: undefined,
+      operation: undefined
     }
 
     this.updateNumber   = this.updateNumber.bind(this)
     this.beginFloat     = this.beginFloat.bind(this)
     this.setOperation   = this.setOperation.bind(this)
     this.evaluateEquals = this.evaluateEquals.bind(this)
+    this.clearInput     = this.clearInput.bind(this)
+    this.add      = this.add.bind(this)
+    this.subtract = this.subtract.bind(this)
+    this.multiply = this.multiply.bind(this)
+    this.divide   = this.divide.bind(this)
+  }
+
+  add(num)      { return this.state.operand + num }
+  subtract(num) { return this.state.operand - num }
+  multiply(num) { return this.state.operand * num }
+  divide(num)   { return this.state.operand / num }
+
+  operations(operationName) {
+    switch(operationName) {
+      case '+': return this.add
+      case '-': return this.subtract
+      case '*': return this.multiply
+      case '/': return this.divide
+      default:  return undefined
+    }
   }
 
   updateNumber(digitString) {
@@ -38,9 +61,27 @@ class Calculator extends Component {
   }
 
   setOperation(operationName) {
+    this.setState({
+      operand: this.state.entry,
+      operation: this.operations(operationName),
+      newEntry: true
+    })
   }
 
   evaluateEquals() {
+    if((typeof this.state.operand) !== 'undefined' && this.state.operation) {
+      this.clearInput()
+      this.setState({ entry: this.state.operation(this.state.entry) })
+    }
+  }
+
+  clearInput() {
+    this.setState({
+      entry: 0,
+      newEntry: true,
+      operand: undefined,
+      operation: undefined
+    })
   }
 
   render() {
